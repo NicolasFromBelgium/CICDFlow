@@ -23,6 +23,6 @@ def health_check():
 @app.post("/login")
 def login(request: LoginRequest):
     # Fake auth pour premier TDD (on passera à fastapi-users + JWT + DB après)
-    if request.username == "test" and request.password == "test":
+    if request.username == "test45" and request.password == "test":
         return {"access_token": "fake-jwt-token-12345", "token_type": "bearer"}
     raise HTTPException(status_code=401, detail="Identifiants invalides")
