@@ -5,7 +5,7 @@ client = TestClient(app)
 
 def test_login_success():
     """TDD - Test rouge puis vert : login valide doit retourner token"""
-    response = client.post("/login", json={"username": "test", "password": "test"})
+    response = client.post("/login", json={"username": "test45", "password": "test"})
     assert response.status_code == 200
     data = response.json()
     assert "access_token" in data
