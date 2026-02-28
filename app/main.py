@@ -20,9 +20,9 @@ def read_root():
 def health_check():
     return {"status": "healthy", "env": "dev"}
 
-@app.post("/login")
-def login(request: LoginRequest):
+#@app.post("/login")
+#def login(request: LoginRequest):
     # Fake auth pour premier TDD (on passera à fastapi-users + JWT + DB après)
-    if request.username == "test" and request.password == "test":
-        return {"access_token": "fake-jwt-token-12345", "token_type": "bearer"}
-    raise HTTPException(status_code=401, detail="Identifiants invalides")
+ #   if request.username == "test" and request.password == "test":
+  #      return {"access_token": "fake-jwt-token-12345", "token_type": "bearer"}
+   # raise HTTPException(status_code=401, detail="Identifiants invalides")
