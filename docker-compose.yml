@@ -1,16 +1,4 @@
 services:
-  app:
-    build: .
-    ports:
-      - "8000:8000"          # ou 8080:8000 si tu préfères
-    volumes:
-      - .:/app
-    env_file:
-      - .env
-    depends_on:
-      - db
-    restart: unless-stopped
-
   db:
     image: postgres:16-alpine
     environment:
@@ -21,6 +9,24 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cicdflow"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    ports:
+      - "8080:8000"
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
     restart: unless-stopped
 
 volumes:
